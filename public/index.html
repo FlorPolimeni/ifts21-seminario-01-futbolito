@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Futbolito | Canchas de fútbol 5</title>
+  <meta name="description" content="Futbolito: canchas de fútbol 5, torneos, ligas, clases y un lugar para compartir con amigos.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- =====================================================
+       Bootstrap 5 CSS — andamiaje estructural
+       Provee: grid (container/row/col), navbar, formularios,
+       botones base, utilidades de spacing y display.
+       ===================================================== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- =====================================================
+       CSS personalizado — identidad visual de Futbolito
+       Las clases propias usan el prefijo ft-
+       ===================================================== -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Accesibilidad: permite saltar directo al contenido
+       con teclado. Se hace visible al recibir foco. -->
+  <a class="ft-skip-link" href="#contenido">Saltar al contenido</a>
+
+
+  <!-- =====================================================
+       NAVBAR
+       Bootstrap: navbar navbar-expand-lg fixed-top
+         → colapso mobile automático, position fija
+       Custom: ft-navbar, ft-brand, ft-nav-link, ft-nav-cta
+         → transparente al inicio, oscuro al scrollear
+           (main.js agrega la clase .scrolled)
+       ===================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top ft-navbar" id="siteNav">
+    <div class="container">
+
+      <a class="navbar-brand ft-brand" href="#inicio" aria-label="Futbolito - Inicio">
+        <span class="ft-brand-ball"><i class="bi bi-circle-fill"></i></span>
+        <span class="ft-brand-name">FUTBO<span>LITO</span></span>
+      </a>
+
+      <!-- Bootstrap maneja el collapse con data-bs-* -->
+      <button class="navbar-toggler ft-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navLinks"
+              aria-controls="navLinks"
+              aria-expanded="false"
+              aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navLinks">
+        <!-- ms-auto empuja los links a la derecha -->
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#inicio"    data-section="inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#servicios" data-section="servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#precios"   data-section="precios">Precios</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#torneos"   data-section="torneos">Torneos</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#reservas"  data-section="reservas">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-link" href="#contacto"  data-section="contacto">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link ft-nav-cta"  href="#reservas">Reservar cancha</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <main id="contenido">
+
+    <!-- ===================================================
+         HERO
+         Bootstrap: container, row align-items-end,
+           col-lg-8, col-lg-4 d-none d-lg-block
+         Custom: ft-hero, ft-hero-image, ft-hero-overlay,
+           ft-hero-ticket, ft-hero-numbers, ft-scroll-cue
+         =================================================== -->
+    <section class="ft-hero" id="inicio">
+      <div class="ft-hero-image" aria-hidden="true"></div>
+      <div class="ft-hero-overlay" aria-hidden="true"></div>
+
+      <div class="container ft-hero-inner">
+        <div class="row align-items-end">
+
+          <div class="col-lg-8">
+            <span class="ft-eyebrow">
+              <i class="bi bi-lightning-charge-fill"></i> Fútbol 5 · Buenos Aires
+            </span>
+            <h1>Donde cada partido<br><span>se juega de verdad.</span></h1>
+            <p>Canchas de césped sintético, torneos, ligas y el mejor ambiente para jugar con amigos.</p>
+            <div class="ft-hero-actions">
+              <a class="btn ft-btn ft-btn-primary" href="#reservas">
+                <i class="bi bi-calendar2-check"></i> Reservar cancha
+              </a>
+              <a class="btn ft-btn ft-btn-outline" href="#servicios">
+                Ver servicios <i class="bi bi-arrow-down"></i>
+              </a>
+            </div>
+            <div class="ft-hero-numbers">
+              <div><strong>6</strong><span>Canchas</span></div>
+              <div><strong>8–24</strong><span>Todos los días</span></div>
+              <div><strong>+500</strong><span>Equipos</span></div>
+            </div>
+          </div>
+
+          <!-- Ticket de partido: oculto en mobile con Bootstrap d-none d-lg-block -->
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="ft-hero-ticket">
+              <span>PARTIDO DE HOY</span>
+              <div class="ft-ticket-row">
+                <strong>FUTBOLITO</strong>
+                <i class="bi bi-arrow-right"></i>
+                <strong>¿JUGAMOS?</strong>
+              </div>
+              <small>Reservá online · Próximamente</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <a class="ft-scroll-cue" href="#servicios">
+        <span>Conocé Futbolito</span>
+        <i class="bi bi-chevron-down"></i>
+      </a>
+    </section>
+
+
+    <!-- ===================================================
+         SERVICIOS
+         Bootstrap: row g-3, col-lg-4 col-md-6
+           → 3 columnas desktop, 2 tablet, 1 mobile
+         Custom: ft-section, ft-service-card, ft-service-number
+         =================================================== -->
+    <section class="ft-section ft-services" id="servicios">
+      <div class="container">
+
+        <div class="row align-items-end mb-5">
+          <div class="col-lg-7">
+            <span class="ft-eyebrow ft-eyebrow-dark">Todo en un solo lugar</span>
+            <h2>Mucho más que<br><span>alquilar una cancha.</span></h2>
+          </div>
+          <div class="col-lg-5">
+            <p>Vení a jugar, competir, entrenar o simplemente compartir. Armamos el espacio para que disfrutes el fútbol.</p>
+          </div>
+        </div>
+
+        <div class="row g-3">
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">01</div>
+              <i class="bi bi-dribbble"></i>
+              <h3>Alquiler de canchas</h3>
+              <p>Canchas de césped sintético con iluminación profesional y horarios todos los días.</p>
+              <a href="#reservas">Reservar <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">02</div>
+              <i class="bi bi-trophy"></i>
+              <h3>Torneos y ligas</h3>
+              <p>Competí durante todo el año con tu equipo y sumate a nuestras ligas amateur.</p>
+              <a href="#torneos">Ver torneos <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">03</div>
+              <i class="bi bi-person-video2"></i>
+              <h3>Clases y entrenamientos</h3>
+              <p>Entrenamientos individuales y grupales para mejorar técnica, juego y condición.</p>
+              <a href="#contacto">Consultar <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">04</div>
+              <i class="bi bi-cup-hot"></i>
+              <h3>Bar & tercer tiempo</h3>
+              <p>Después del partido, quedate a compartir algo con tu equipo en nuestro bar.</p>
+              <a href="#contacto">Conocer más <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">05</div>
+              <i class="bi bi-bag"></i>
+              <h3>Accesorios</h3>
+              <p>Pelotas, botines y accesorios básicos para que no te falte nada antes de entrar.</p>
+              <a href="#contacto">Consultar <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <article class="ft-service-card">
+              <div class="ft-service-number">06</div>
+              <i class="bi bi-people"></i>
+              <h3>Eventos</h3>
+              <p>Organizamos partidos, cumpleaños y eventos corporativos con propuestas a medida.</p>
+              <a href="#contacto">Consultar <i class="bi bi-arrow-up-right"></i></a>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         NUESTRA HISTORIA
+         Bootstrap: row align-items-center g-5, col-lg-6
+         Custom: ft-story, ft-story-photo, ft-story-points
+         =================================================== -->
+    <section class="ft-story">
+      <div class="container">
+        <div class="row align-items-center g-5">
+
+          <div class="col-lg-6">
+            <div class="ft-story-photo" role="img" aria-label="Jugadores de fútbol en una cancha"></div>
+          </div>
+
+          <div class="col-lg-6">
+            <span class="ft-eyebrow">Nuestra historia</span>
+            <h2>El fútbol es la excusa.<br><span>Lo importante pasa acá.</span></h2>
+            <p>Futbolito nació con una idea sencilla: que encontrar un lugar para jugar con amigos fuera fácil. Desde entonces, crecimos junto a cientos de equipos que hacen de cada partido una historia.</p>
+            <div class="ft-story-points">
+              <div><strong>2015</strong><span>Año de apertura</span></div>
+              <div><strong>+500</strong><span>Equipos activos</span></div>
+              <div><strong>6</strong><span>Canchas disponibles</span></div>
+            </div>
+            <a class="ft-text-link" href="#contacto">
+              Conocé más sobre Futbolito <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         PRECIOS
+         Bootstrap: row g-3, col-lg-4 col-md-8,
+           justify-content-center align-items-center,
+           text-center mb-5
+         Custom: ft-pricing, ft-price-card, ft-price-featured
+         =================================================== -->
+    <section class="ft-section ft-pricing" id="precios">
+      <div class="container">
+
+        <div class="text-center mb-5">
+          <span class="ft-eyebrow ft-eyebrow-dark">Tarifas</span>
+          <h2>Elegí cómo<br><span>querés jugar.</span></h2>
+          <p>Valores de referencia para el proyecto educativo. Los alumnos pueden modificarlos.</p>
+        </div>
+
+        <div class="row g-3 justify-content-center align-items-center">
+
+          <div class="col-lg-4 col-md-8">
+            <article class="ft-price-card">
+              <span class="ft-price-label">Lunes a viernes</span>
+              <h3>Alquiler de cancha</h3>
+              <div class="ft-price">$38.000 <small>/ hora</small></div>
+              <ul>
+                <li><i class="bi bi-check"></i> Hasta 10 jugadores</li>
+                <li><i class="bi bi-check"></i> Pelotas incluidas</li>
+                <li><i class="bi bi-check"></i> Vestuarios</li>
+              </ul>
+              <a class="btn ft-btn ft-btn-dark" href="#reservas">Reservar</a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-8">
+            <article class="ft-price-card ft-price-featured">
+              <span class="ft-popular">Más elegido</span>
+              <span class="ft-price-label">Fines de semana</span>
+              <h3>Cancha + tercer tiempo</h3>
+              <div class="ft-price">$48.000 <small>/ hora</small></div>
+              <ul>
+                <li><i class="bi bi-check"></i> Hasta 10 jugadores</li>
+                <li><i class="bi bi-check"></i> Pelotas incluidas</li>
+                <li><i class="bi bi-check"></i> Vestuarios</li>
+                <li><i class="bi bi-check"></i> Bar abierto</li>
+              </ul>
+              <a class="btn ft-btn ft-btn-primary" href="#reservas">Reservar</a>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-8">
+            <article class="ft-price-card">
+              <span class="ft-price-label">Competencia</span>
+              <h3>Liga amateur</h3>
+              <div class="ft-price">$22.000 <small>/ persona</small></div>
+              <ul>
+                <li><i class="bi bi-check"></i> 4 partidos mensuales</li>
+                <li><i class="bi bi-check"></i> Fixture organizado</li>
+                <li><i class="bi bi-check"></i> Árbitro incluido</li>
+              </ul>
+              <a class="btn ft-btn ft-btn-dark" href="#torneos">Consultar</a>
+            </article>
+          </div>
+
+        </div>
+
+        <p class="text-center ft-pricing-note mt-4">
+          * Precios ficticios para la práctica. Sujetos a modificación.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         TORNEOS
+         Bootstrap: row g-0, col-lg-4
+           g-0 = sin gutter, porque las cards tienen borde
+           entre sí (el CSS maneja los bordes laterales)
+         Custom: ft-tournaments, ft-tournament-card,
+           ft-tournament-tag
+         =================================================== -->
+    <section class="ft-tournaments" id="torneos">
+      <div class="container">
+
+        <div class="row align-items-end mb-5">
+          <div class="col">
+            <span class="ft-eyebrow">Competencia</span>
+            <h2>¿Tu equipo está<br><span>para jugar?</span></h2>
+          </div>
+          <div class="col-auto">
+            <a class="btn ft-btn ft-btn-outline-dark" href="#contacto">
+              Quiero participar <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- g-0: sin gutter entre columnas.
+             Los bordes los manejamos nosotros en el CSS. -->
+        <div class="row g-0 ft-tournament-list">
+
+          <div class="col-lg-4 col-md-12">
+            <article class="ft-tournament-card">
+              <span class="ft-tournament-tag">F5 · AMATEUR</span>
+              <h3>Liga Futbolito</h3>
+              <p>Temporada regular · 10 fechas</p>
+              <strong>Inscripción abierta</strong>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <article class="ft-tournament-card">
+              <span class="ft-tournament-tag">F5 · MIXTO</span>
+              <h3>Copa Amigos</h3>
+              <p>Formato eliminación directa</p>
+              <strong>Próximamente</strong>
+            </article>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <article class="ft-tournament-card ft-tournament-last">
+              <span class="ft-tournament-tag">F5 · +30</span>
+              <h3>Veteranos</h3>
+              <p>Competencia para mayores de 30</p>
+              <strong>Próximamente</strong>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         RESERVAS
+         Bootstrap: row align-items-center g-5,
+           col-lg-7, col-lg-5
+         Custom: ft-reservation, ft-reservation-box,
+           ft-reservation-step
+         =================================================== -->
+    <section class="ft-reservation" id="reservas">
+      <div class="container">
+        <div class="row align-items-center g-5">
+
+          <div class="col-lg-7">
+            <span class="ft-eyebrow">Reservas online</span>
+            <h2>Tu próximo partido<br><span>empieza acá.</span></h2>
+            <p>En esta etapa la reserva es una demostración. Más adelante este bloque podrá conectarse con FastAPI y una base de datos.</p>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="ft-reservation-box">
+
+              <div class="ft-reservation-step">
+                <span>01</span>
+                <div>
+                  <strong>Elegí la cancha</strong>
+                  <small>Cancha 1 · 2 · 3 · 4 · 5 · 6</small>
+                </div>
+              </div>
+
+              <div class="ft-reservation-step">
+                <span>02</span>
+                <div>
+                  <strong>Seleccioná fecha y hora</strong>
+                  <small>Disponibilidad en tiempo real</small>
+                </div>
+              </div>
+
+              <div class="ft-reservation-step">
+                <span>03</span>
+                <div>
+                  <strong>Confirmá tu reserva</strong>
+                  <small>Próximamente conectado a FastAPI</small>
+                </div>
+              </div>
+
+              <!-- w-100: Bootstrap, botón ocupa el ancho completo -->
+              <button class="btn ft-btn ft-btn-primary w-100 mt-3" id="reservationDemo" type="button">
+                <i class="bi bi-calendar-plus"></i> Probar reserva
+              </button>
+              <p class="ft-demo-message" id="demoMessage" aria-live="polite"></p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         CONTACTO
+         Bootstrap: row g-5, col-lg-5, col-lg-7
+           form-control ft-input (inputs y textarea)
+           form-select ft-select (dropdown)
+           form-label ft-label
+           row g-3 mb-3, col-md-6
+         Custom: ft-contact, ft-form, ft-label, ft-input,
+           ft-select, ft-contact-data, ft-wa
+         =================================================== -->
+    <section class="ft-section ft-contact" id="contacto">
+      <div class="container">
+        <div class="row g-5">
+
+          <!-- Info de contacto -->
+          <div class="col-lg-5">
+            <span class="ft-eyebrow ft-eyebrow-dark">Contacto</span>
+            <h2>¿Armamos<br><span>un partido?</span></h2>
+            <p>Escribinos por cualquier consulta. El formulario funciona de forma estática en esta primera etapa.</p>
+
+            <div class="ft-contact-data">
+              <a href="mailto:info@futbolito.com.ar">
+                <i class="bi bi-envelope"></i> info@futbolito.com.ar
+              </a>
+              <a href="tel:+541100000000">
+                <i class="bi bi-telephone"></i> 011-0000-0000
+              </a>
+              <span><i class="bi bi-geo-alt"></i> Buenos Aires, Argentina</span>
+              <span><i class="bi bi-clock"></i> Lunes a domingo · 08:00 a 24:00</span>
+            </div>
+
+            <div class="ft-wa">
+              <i class="bi bi-whatsapp"></i>
+              <span>
+                <strong>WhatsApp</strong>
+                <small>Se habilitará en una próxima etapa</small>
+              </span>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div class="col-lg-7">
+            <form class="ft-form" id="contactForm" novalidate>
+
+              <!-- Bootstrap row + col divide nombre y email en dos columnas -->
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <!-- form-label: Bootstrap; ft-label: tipografía custom -->
+                  <label class="form-label ft-label">Nombre</label>
+                  <!-- form-control: Bootstrap (base funcional)
+                       ft-input: colores de Futbolito -->
+                  <input class="form-control ft-input" type="text" name="name"
+                         placeholder="Tu nombre" required minlength="3">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label ft-label">Email</label>
+                  <input class="form-control ft-input" type="email" name="email"
+                         placeholder="tu@email.com" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label ft-label">Motivo de consulta</label>
+                <!-- form-select: Bootstrap (base del dropdown)
+                     ft-select: colores custom -->
+                <select class="form-select ft-select" name="subject">
+                  <option value="">Seleccioná una opción</option>
+                  <option>Reserva de cancha</option>
+                  <option>Torneo o liga</option>
+                  <option>Clases</option>
+                  <option>Evento</option>
+                  <option>Otra consulta</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label ft-label">Mensaje</label>
+                <textarea class="form-control ft-input" name="message"
+                          rows="5" placeholder="Contanos qué necesitás..."
+                          required minlength="10"></textarea>
+              </div>
+
+              <button class="btn ft-btn ft-btn-primary w-100" type="submit">
+                Enviar consulta <i class="bi bi-arrow-right"></i>
+              </button>
+              <p class="ft-form-message" id="formMessage" aria-live="polite"></p>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       Bootstrap: row align-items-center g-3,
+         col-lg-4, text-center, text-lg-start, text-lg-end
+       ===================================================== -->
+  <footer class="ft-footer">
+    <div class="container">
+      <div class="row align-items-center text-center g-3">
+
+        <div class="col-lg-4 text-lg-start">
+          <a class="ft-brand" href="#inicio">
+            <span class="ft-brand-ball"><i class="bi bi-circle-fill"></i></span>
+            <span class="ft-brand-name">FUTBO<span>LITO</span></span>
+          </a>
+        </div>
+
+        <div class="col-lg-4">
+          <p class="mb-0">© <span id="year"></span> Futbolito · Proyecto educativo IFTS N° 21</p>
+        </div>
+
+        <div class="col-lg-4 text-lg-end">
+          <div class="ft-footer-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#precios">Precios</a>
+            <a href="#contacto">Contacto</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba (custom, no es Bootstrap) -->
+  <button class="ft-back-to-top" id="backToTop" type="button" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+
+  <!-- =====================================================
+       Bootstrap 5 JS Bundle (incluye Popper)
+       Necesario para el navbar collapse en mobile.
+       ===================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS personalizado Futbolito -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

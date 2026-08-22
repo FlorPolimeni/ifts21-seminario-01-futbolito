@@ -1,0 +1,1022 @@
+/* ============================================================
+   FUTBOLITO — styles.css
+   Identidad visual personalizada sobre Bootstrap 5
+
+   Bootstrap provee la estructura (grid, navbar, botones,
+   formularios). Este archivo define quién ES esta marca:
+   verde lima eléctrico, negro intenso, tipografía condensada
+   y energética.
+
+   Convención de nombres: clases propias con prefijo ft-
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES Y BASE
+   ============================================================ */
+
+:root {
+  --ft-lime:     #b6ed38;
+  --ft-lime-2:   #d0fa71;   /* lime más claro, hover */
+  --ft-lime-dark: #8bc91b;
+  --ft-black:    #10130f;
+  --ft-black-2:  #171b15;
+  --ft-green:    #18351e;
+  --ft-cream:    #f2f3ed;
+  --ft-white:    #fff;
+  --ft-ink:      #141713;
+  --ft-muted:    #697066;
+  --ft-line:     #dce1d8;
+  --ft-nav-h:    78px;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  /* Compensa la navbar fija: sin esto el título de la sección
+     quedaría oculto detrás del nav al navegar con anchors. */
+  scroll-padding-top: var(--ft-nav-h);
+}
+
+body {
+  font-family: "DM Sans", Arial, sans-serif;
+  color: var(--ft-ink);
+  background: var(--ft-cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ============================================================
+   2. ACCESIBILIDAD — Skip link
+   ============================================================ */
+
+.ft-skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: var(--ft-lime);
+  color: var(--ft-black);
+  font-weight: 800;
+  transition: top .2s;
+}
+
+/* Aparece solo al recibir foco (navegación por teclado) */
+.ft-skip-link:focus {
+  top: 16px;
+}
+
+
+/* ============================================================
+   3. NAVBAR
+   Comportamiento: arranca transparente y al scrollear 30px
+   el JS agrega .scrolled para oscurecer el fondo.
+   Bootstrap maneja el colapso en mobile.
+   ============================================================ */
+
+.ft-navbar {
+  min-height: var(--ft-nav-h);
+  /* Sin background: transparente al inicio */
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+/* main.js agrega esta clase cuando scrollY > 30 */
+.ft-navbar.scrolled {
+  background: rgba(16, 19, 15, .95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 35px rgba(0,0,0,.2);
+}
+
+/* ─── Marca / logo ─────────────────────────────────────── */
+.ft-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  color: var(--ft-white);
+}
+
+.ft-brand-ball {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ft-lime);
+  border-radius: 50%;
+  color: transparent;    /* oculta el ícono fill, deja solo el borde */
+  position: relative;
+}
+
+/* Punto interior del logo (pelota estilizada) */
+.ft-brand-ball::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--ft-lime);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.ft-brand-name {
+  font-size: 24px;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.ft-brand-name span { color: var(--ft-lime); }
+
+/* ─── Links del nav: override de Bootstrap .nav-link ──── */
+.ft-nav-link {
+  position: relative;
+  color: rgba(255,255,255,.78) !important;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  transition: color .2s;
+}
+
+.ft-nav-link:hover,
+.ft-nav-link.active {
+  /* .active la agrega el IntersectionObserver en main.js */
+  color: var(--ft-white) !important;
+}
+
+/* Subrayado lima animado: se expande al hover/active */
+.ft-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--ft-lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+
+.ft-nav-link:hover::after,
+.ft-nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ─── Botón CTA "Reservar cancha" ─────────────────────── */
+.ft-nav-cta {
+  padding: 11px 16px !important;
+  border-radius: 9px;
+  background: var(--ft-lime);
+  color: var(--ft-black) !important;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition: background .2s;
+}
+
+.ft-nav-cta:hover { background: var(--ft-lime-2); }
+
+/* ─── Hamburguesa ──────────────────────────────────────── */
+.ft-toggler {
+  width: 44px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.ft-toggler span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 4px auto;
+  background: var(--ft-white);
+}
+
+/* Menú desplegado en mobile */
+@media (max-width: 991px) {
+  .ft-navbar .navbar-collapse {
+    background: rgba(16, 19, 15, .98);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    padding: 12px;
+    margin-top: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  }
+
+  .ft-nav-link {
+    padding: 12px !important;
+    display: block;
+  }
+
+  .ft-nav-link::after { display: none; }
+
+  .ft-nav-cta {
+    padding: 12px !important;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+  }
+}
+
+
+/* ============================================================
+   4. UTILIDADES COMPARTIDAS
+   ============================================================ */
+
+.ft-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ft-lime);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  margin-bottom: 14px;
+}
+
+.ft-eyebrow-dark { color: #4e771d; }
+
+/* Títulos de sección */
+.ft-services h2,
+.ft-story h2,
+.ft-pricing h2,
+.ft-tournaments h2,
+.ft-reservation h2,
+.ft-contact h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: clamp(44px, 5.5vw, 68px);
+  line-height: .92;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+}
+
+.ft-services h2 span,
+.ft-story h2 span,
+.ft-pricing h2 span,
+.ft-tournaments h2 span,
+.ft-reservation h2 span,
+.ft-contact h2 span {
+  color: var(--ft-lime);
+}
+
+/* ─── Botones ──────────────────────────────────────────────
+   Bootstrap .btn provee la base: display flex, cursor,
+   transición, font-size heredado.
+   Nuestras clases ft-btn-* añaden la paleta de Futbolito.
+   ────────────────────────────────────────────────────────── */
+.ft-btn {
+  min-height: 48px;
+  padding: 0 19px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  border-radius: 10px;
+  border: 0;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.ft-btn:hover { transform: translateY(-2px); }
+
+.ft-btn-primary { background: var(--ft-lime); color: var(--ft-black); }
+.ft-btn-primary:hover { background: var(--ft-lime-2); color: var(--ft-black); }
+
+.ft-btn-outline {
+  border: 1px solid rgba(255,255,255,.38);
+  background: rgba(255,255,255,.04);
+  color: var(--ft-white);
+}
+.ft-btn-outline:hover { background: rgba(255,255,255,.12); color: var(--ft-white); }
+
+.ft-btn-outline-dark {
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: var(--ft-white);
+}
+.ft-btn-outline-dark:hover { background: rgba(255,255,255,.08); color: var(--ft-white); }
+
+.ft-btn-dark { background: var(--ft-black); color: var(--ft-white); }
+.ft-btn-dark:hover { background: #222; color: var(--ft-white); }
+
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+
+.ft-hero {
+  min-height: 780px;
+  height: 100svh;
+  max-height: 920px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--ft-white);
+}
+
+.ft-hero-image {
+  position: absolute;
+  inset: -3%;
+  background:
+    url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=2200&q=85")
+    center / cover no-repeat;
+  animation: ft-hero-zoom 18s ease-in-out infinite alternate;
+}
+
+.ft-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7,10,7,.95) 0%, rgba(7,10,7,.72) 48%, rgba(7,10,7,.18) 100%),
+    linear-gradient(0deg, rgba(7,10,7,.75), transparent 55%);
+}
+
+@keyframes ft-hero-zoom {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.08); }
+}
+
+.ft-hero-inner {
+  position: relative;
+  z-index: 2;
+  padding-top: calc(var(--ft-nav-h) + 10px);
+}
+
+.ft-hero h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: clamp(58px, 8vw, 105px);
+  line-height: .92;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+  margin-bottom: 23px;
+}
+
+.ft-hero h1 span { color: var(--ft-lime); }
+
+.ft-hero p {
+  max-width: 580px;
+  color: rgba(255,255,255,.75);
+  font-size: 17px;
+  margin-bottom: 0;
+}
+
+.ft-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+  margin-bottom: 45px;
+}
+
+.ft-hero-numbers {
+  display: flex;
+  gap: 42px;
+}
+
+.ft-hero-numbers div { display: flex; flex-direction: column; }
+
+.ft-hero-numbers strong {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 29px;
+  line-height: 1;
+}
+
+.ft-hero-numbers span {
+  margin-top: 5px;
+  color: rgba(255,255,255,.52);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* Tarjeta "Partido de hoy" (col derecha del hero) */
+.ft-hero-ticket {
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.17);
+  border-radius: 18px;
+  background: rgba(16,19,15,.6);
+  backdrop-filter: blur(13px);
+}
+
+.ft-hero-ticket > span {
+  display: block;
+  color: var(--ft-lime);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.ft-ticket-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 22px 0 7px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px;
+}
+
+.ft-ticket-row i { color: var(--ft-lime); }
+
+.ft-hero-ticket small {
+  color: rgba(255,255,255,.5);
+  font-size: 10px;
+}
+
+/* Indicador de scroll al pie del hero */
+.ft-scroll-cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 23px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255,255,255,.52);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+
+/* ============================================================
+   6. SERVICIOS
+   ============================================================ */
+
+.ft-section { padding: 105px 0; }
+
+.ft-services {
+  background: var(--ft-cream);
+  color: var(--ft-ink);
+}
+
+.ft-services p { color: var(--ft-muted); font-size: 14px; }
+
+/* Bootstrap col- controla el ancho; ft-service-card el estilo */
+.ft-service-card {
+  position: relative;
+  height: 100%;
+  padding: 28px;
+  border: 1px solid var(--ft-line);
+  border-radius: 20px;
+  background: var(--ft-white);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.ft-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(16,19,15,.08);
+}
+
+.ft-service-number {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ft-line);
+  letter-spacing: .05em;
+}
+
+.ft-service-card > .bi {
+  font-size: 30px;
+  color: var(--ft-lime-dark);
+  margin-bottom: 18px;
+  display: block;
+}
+
+.ft-service-card h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.ft-service-card p {
+  color: var(--ft-muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.ft-service-card a {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ft-lime-dark);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.ft-service-card a:hover { color: var(--ft-black); }
+
+
+/* ============================================================
+   7. HISTORIA
+   ============================================================ */
+
+.ft-story {
+  padding: 105px 0;
+  background: var(--ft-white);
+  color: var(--ft-ink);
+}
+
+.ft-story p { color: var(--ft-muted); font-size: 14px; margin: 20px 0 30px; }
+
+.ft-story-photo {
+  min-height: 500px;
+  border-radius: 20px;
+  background:
+    url("https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&w=1200&q=85")
+    center / cover;
+}
+
+.ft-story-points {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.ft-story-points div { display: flex; flex-direction: column; }
+
+.ft-story-points strong {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--ft-black);
+}
+
+.ft-story-points span {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ft-muted);
+  letter-spacing: .08em;
+}
+
+.ft-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--ft-lime-dark);
+}
+
+.ft-text-link:hover { color: var(--ft-black); }
+
+
+/* ============================================================
+   8. PRECIOS
+   ============================================================ */
+
+.ft-pricing {
+  background: var(--ft-cream);
+  color: var(--ft-ink);
+}
+
+.ft-pricing p { color: var(--ft-muted); font-size: 14px; }
+
+/* Bootstrap col- controla el ancho */
+.ft-price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--ft-line);
+  border-radius: 20px;
+  background: var(--ft-white);
+  height: 100%;
+}
+
+.ft-price-featured {
+  background: var(--ft-black);
+  color: var(--ft-white);
+  border-color: var(--ft-black);
+  transform: translateY(-8px);
+}
+
+.ft-popular {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--ft-lime);
+  color: var(--ft-black);
+  padding: 5px 8px;
+  border-radius: 99px;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ft-price-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ft-lime-dark);
+  margin-bottom: 8px;
+}
+
+.ft-price-featured .ft-price-label { color: var(--ft-lime); }
+
+.ft-price-card h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  min-height: 50px;
+  margin-bottom: 15px;
+}
+
+.ft-price {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 45px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ft-price small {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ft-muted);
+}
+
+.ft-price-featured .ft-price small { color: rgba(255,255,255,.5); }
+
+.ft-price-card ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+  flex: 1;
+}
+
+.ft-price-card li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ft-muted);
+  font-size: 11px;
+}
+
+.ft-price-featured li { color: rgba(255,255,255,.62); }
+
+.ft-price-card li .bi { color: #6fa31c; }
+.ft-price-featured li .bi { color: var(--ft-lime); }
+
+.ft-pricing-note { color: var(--ft-muted); font-size: 10px; }
+
+
+/* ============================================================
+   9. TORNEOS
+   ============================================================ */
+
+.ft-tournaments {
+  padding: 100px 0;
+  background: var(--ft-black);
+  color: var(--ft-white);
+}
+
+.ft-tournament-list {
+  /* g-0 de Bootstrap elimina los gutters; nosotros
+     manejamos los bordes entre columnas con CSS */
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+
+.ft-tournament-card {
+  padding: 27px;
+  border-right: 1px solid rgba(255,255,255,.14);
+  height: 100%;
+}
+
+/* La última card no tiene borde derecho */
+.ft-tournament-last { border-right: 0; }
+
+.ft-tournament-tag {
+  display: block;
+  color: var(--ft-lime);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.ft-tournament-card h3 {
+  margin-top: 20px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ft-tournament-card p {
+  color: rgba(255,255,255,.5);
+  font-size: 11px;
+}
+
+.ft-tournament-card strong {
+  display: block;
+  margin-top: 20px;
+  color: var(--ft-white);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   10. RESERVAS
+   ============================================================ */
+
+.ft-reservation {
+  padding: 100px 0;
+  background: var(--ft-lime);
+  color: var(--ft-black);
+}
+
+.ft-reservation h2 { color: var(--ft-black); }
+.ft-reservation h2 span { color: #476c13; }
+
+.ft-reservation p {
+  max-width: 560px;
+  margin-top: 20px;
+  color: #456019;
+  font-size: 14px;
+}
+
+.ft-reservation-box {
+  padding: 28px;
+  border-radius: 22px;
+  background: var(--ft-black);
+  color: var(--ft-white);
+}
+
+.ft-reservation-step {
+  display: flex;
+  gap: 15px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.ft-reservation-step > span {
+  color: var(--ft-lime);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ft-reservation-step strong,
+.ft-reservation-step small { display: block; }
+
+.ft-reservation-step strong { font-size: 12px; }
+.ft-reservation-step small { color: rgba(255,255,255,.45); font-size: 10px; }
+
+.ft-demo-message {
+  min-height: 20px;
+  margin-top: 10px;
+  color: var(--ft-lime);
+  font-size: 10px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   11. CONTACTO
+   ============================================================ */
+
+.ft-contact { background: var(--ft-cream); }
+
+.ft-contact p { color: var(--ft-muted); font-size: 14px; margin-bottom: 0; }
+
+.ft-contact-data {
+  display: grid;
+  gap: 12px;
+  margin-top: 27px;
+}
+
+.ft-contact-data a,
+.ft-contact-data span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ft-green);
+  font-size: 12px;
+}
+
+.ft-contact-data .bi { color: #61951a; }
+
+.ft-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 25px;
+  padding: 12px 15px;
+  border: 1px dashed #b6c1af;
+  border-radius: 13px;
+  background: #e9eee6;
+  color: #727b70;
+}
+
+.ft-wa .bi { font-size: 23px; color: #879f7d; }
+.ft-wa small { display: block; font-size: 9px; }
+
+/* Formulario:
+   Bootstrap .form-control y .form-select proveen la base
+   funcional (padding, border, focus outline).
+   Nosotros sobreescribimos los colores. */
+.ft-form {
+  padding: 32px;
+  border: 1px solid var(--ft-line);
+  border-radius: 22px;
+  background: var(--ft-white);
+  box-shadow: 0 18px 45px rgba(16,19,15,.08);
+}
+
+.ft-label {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ft-black) !important;
+  margin-bottom: 7px !important;
+}
+
+/* Override de Bootstrap .form-control con colores Futbolito */
+.ft-input {
+  padding: 13px 14px !important;
+  border-color: var(--ft-line) !important;
+  border-radius: 10px !important;
+  background: #fbfcfa !important;
+  font-size: 12px !important;
+  color: var(--ft-ink) !important;
+}
+
+.ft-input:focus {
+  border-color: var(--ft-lime-dark) !important;
+  box-shadow: 0 0 0 4px rgba(182,237,56,.18) !important;
+  background: var(--ft-white) !important;
+}
+
+/* Override de Bootstrap .form-select */
+.ft-select {
+  padding: 13px 14px !important;
+  border-color: var(--ft-line) !important;
+  border-radius: 10px !important;
+  background-color: #fbfcfa !important;
+  font-size: 12px !important;
+  color: var(--ft-ink) !important;
+}
+
+.ft-select:focus {
+  border-color: var(--ft-lime-dark) !important;
+  box-shadow: 0 0 0 4px rgba(182,237,56,.18) !important;
+}
+
+.ft-form-message {
+  min-height: 18px;
+  margin-top: 9px;
+  color: #507519;
+  font-size: 10px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+
+.ft-footer {
+  padding: 25px 0;
+  background: var(--ft-black);
+  color: rgba(255,255,255,.5);
+}
+
+.ft-footer p { font-size: 9px; }
+
+.ft-footer-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.ft-footer-links a {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+
+.ft-footer-links a:hover { color: var(--ft-lime); }
+
+
+/* ============================================================
+   13. BOTÓN VOLVER ARRIBA
+   ============================================================ */
+
+.ft-back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 900;
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ft-lime);
+  color: var(--ft-black);
+  font-size: 18px;
+  cursor: pointer;
+
+  /* Oculto por defecto; JS agrega .visible */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s ease, visibility .25s ease, transform .25s ease;
+}
+
+.ft-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   14. RESPONSIVE — complementa los breakpoints de Bootstrap
+   Bootstrap maneja: columnas, navbar collapse, d-none d-lg-block
+   Nosotros manejamos: alturas, padding, comportamientos custom
+   ============================================================ */
+
+@media (max-width: 991px) {
+  .ft-story-photo { min-height: 430px; }
+  .ft-price-featured { transform: none; }
+}
+
+@media (max-width: 767px) {
+  .ft-section,
+  .ft-story,
+  .ft-tournaments,
+  .ft-reservation {
+    padding: 75px 0;
+  }
+
+  .ft-hero h1 { font-size: clamp(52px, 15vw, 76px); }
+  .ft-hero p { font-size: 14px; }
+
+  .ft-hero-numbers {
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  .ft-hero-actions { flex-direction: column; }
+  .ft-hero-actions .btn { width: 100%; }
+
+  .ft-story-photo { min-height: 350px; }
+
+  .ft-story-points { justify-content: space-between; gap: 10px; }
+
+  /* Torneos en mobile: borde inferior en vez de lateral */
+  .ft-tournament-card {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.14);
+  }
+
+  .ft-tournament-last { border-bottom: 0; }
+}
+
+/* Respeta preferencia de accesibilidad "reducir movimiento" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
